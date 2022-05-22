@@ -1,5 +1,6 @@
 """
-00_MQ_base_v1
+05_MQ_quiz_v1
+creating a code that gives the player randomly chosen questions from the list.
 """
 
 import random
@@ -25,18 +26,6 @@ def corrector(question_text):
         # if player types anything  else, ask again
         else:
             print("Invalid answer. Please type 'yes' or 'no'. ")
-
-
-# Instruction function
-def instruction():
-    print("***How to play***")
-    print()
-    print("There are two types of quiz.\n"
-          "First choice is choosing number between 1 to 4 in the list\n"
-          "Second choice is type the answer to the question.\n")
-    print()
-    print("Choose the type of quiz you want to play, and play!")
-    print()
 
 
 # selection function
@@ -134,32 +123,20 @@ def quiz():
 # Main routine
 again = ""
 
-print("Welcome to Maori Language Quiz.")
+print("Welcome to Maori quiz.")
 print()
 
-# asks whether the player wants to see the instruction.
-instruction_show = corrector("Do you want to see instruction?: ")
-print(f"You have chosen {instruction_show}")
+play = "Yes"
 
-# after showing instruction, ask again to the player whether they want to play the quiz
-if instruction_show == "Yes":
-    instruction()
-    play = corrector("Do you want to play quiz now? (type 'no' to quit): ")
-
-# if the player types no, automatically saying 'yes' to play the quiz.
-else:
-    play = "Yes"
-
-# this while loop makes the code run over and over again until player says they do not want to play the game.
 while play == "Yes":
 
     if again == "":
         select = selection("1) [Quiz] Number 1 to 10 in Maori\n"
                            "2) [Quiz] Days of the week in Maori\n"
                            "3) [Quiz] Months of the year in Maori\n"
-                           "\n"
-                           "************    ***************************\n"
-                           "\n"
+                           "                                   \n"
+                           "***************************************\n"
+                           "                                   \n"
                            "4) [Vocabulary] Number 1 to 10 in Maori\n"
                            "5) [Vocabulary] Days of the week in Maori\n"
                            "6) [Vocabulary] Months of the year in Maori\n"
@@ -168,16 +145,14 @@ while play == "Yes":
                            "Choose the number between 0 to 6: ", 0, 6)
         print()
         quiz()
-        print()
 
-    # if the player wants to finish, Finish the game
     else:
-        print("Thank you for play our quiz!")
+        print()
+        print("Summary showing up")
         break
 
-    again = input("Do you want to play again? Press [Enter] to play again, type any key to quit.")
+    print()
+    again = input("Press [Enter] to play again, type Any key to quit: ")
 
-# test code that prints 'what' when while loop is ended.
-print("END")
-
-
+print()
+print("While loop end test")

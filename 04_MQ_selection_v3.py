@@ -63,6 +63,7 @@ def selection():
                 response = "vocabmonths"
                 return response
 
+        # if player answers with invalid int, ask again.
         else:
             print("Invalid answer. Please answer between 1 to 6."
                   "1) [Quiz] Number 1 to 10 in Maori\n"
@@ -84,4 +85,5 @@ def selection():
 
 # Temporary Main routine to test the code
 print("Welcome to Maori Language Quiz.")
-selection()
+chosen = selection()
+print(f"You've chose {chosen}")

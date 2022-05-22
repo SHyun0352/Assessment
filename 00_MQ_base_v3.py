@@ -31,9 +31,10 @@ def corrector(question_text):
 def instruction():
     print("***How to play***")
     print()
-    print("There are two types of quiz.\n"
-          "First choice is choosing number between 1 to 4 in the list\n"
-          "Second choice is type the answer to the question.\n")
+    print("--Maori spelling Quiz--\n"
+          "In the selection menu, You can open Vocabulary, or Quiz.\n"
+          "You can learn how to spell maori words in the Vocabulary.\n"
+          "Then ")
     print()
     print("Choose the type of quiz you want to play, and play!")
     print()
@@ -42,8 +43,10 @@ def instruction():
 # selection function
 def selection(question, low, high):
     # error message that shows when the player types invalid answer.
-    error = "Invalid input.\n" \
-            "Please enter a number between 0 to 6."
+    error = "\n" \
+            "Invalid input.\n" \
+            "Please enter a number between 0 to 6.\n" \
+            "\n"
 
     # this while loop makes the code keep running even the player types invalid answer.
     while True:
@@ -98,27 +101,26 @@ def quiz():
         # shuffles the order of the list
         random.shuffle(choice)
 
-        print("**************************************************")
-        print("***********get right as much as you can!**********")
-        print("**************************************************")
-        print("\n"
-              "\n")
+        print(formatter("*", "Get spelling correct as many as you can!"))
+        print()
 
         # playing quiz
         for i in choice:
             answer = input("What is this number in Maori? '{}': ".format(i[0]))
             # if player types correct answer, correct goes up by 1
             if answer == i[1]:
-                print("correct.")
+                print()
+                print(formatter("!", "correct"))
                 correct += 1
+                print()
             # if player types wrong answer, wrong goes up by 1
             else:
-                print("wrong.")
+                print()
+                print(formatter("?", "wrong"))
                 wrong += 1
+                print()
         # shows summary of finished quiz
-        print("*********************************")
-        print(f"Correct: {correct},Wrong: {wrong}, quiz ended!")
-        print("*********************************")
+        print(formatter("*", f"Correct: {correct},Wrong: {wrong}, quiz ended!"))
 
     # if player types a number between 4 and 6, shows vocabulary lists.
     if 4 <= select <= 6:
@@ -131,6 +133,13 @@ def quiz():
             print(months)
 
 
+def formatter(symbol, text):
+    sides = symbol * 3
+    formatted_text = f"{sides} {text} {sides}"
+    top_bottom = symbol * len(formatted_text)
+    return f"{top_bottom}\n{formatted_text}\n{top_bottom}"
+
+
 # Main routine
 again = ""
 
@@ -140,6 +149,7 @@ print()
 # asks whether the player wants to see the instruction.
 instruction_show = corrector("Do you want to see instruction?: ")
 print(f"You have chosen {instruction_show}")
+print()
 
 # after showing instruction, ask again to the player whether they want to play the quiz
 if instruction_show == "Yes":
@@ -152,32 +162,37 @@ else:
 
 # this while loop makes the code run over and over again until player says they do not want to play the game.
 while play == "Yes":
-
+    # if the player did not type anything when the program asked to play again.
     if again == "":
-        select = selection("1) [Quiz] Number 1 to 10 in Maori\n"
-                           "2) [Quiz] Days of the week in Maori\n"
-                           "3) [Quiz] Months of the year in Maori\n"
+        select = selection("Choose the number you want to play.\n"
                            "\n"
-                           "************    ***************************\n"
+                           "1) Plays quiz about 'Number 1 to 10' in Maori\n"
+                           "2) Plays quiz about 'Days of the week' in Maori\n"
+                           "3) Plays quiz about 'Months of the year' in Maori\n"
                            "\n"
-                           "4) [Vocabulary] Number 1 to 10 in Maori\n"
-                           "5) [Vocabulary] Days of the week in Maori\n"
-                           "6) [Vocabulary] Months of the year in Maori\n"
+                           "********************************************\n"
                            "\n"
-                           "0) Quit\n"
-                           "Choose the number between 0 to 6: ", 0, 6)
+                           "4) Shows vocabulary of 'Number 1 to 10' in Maori\n"
+                           "5) Shows vocabulary of 'Days of the week' in Maori\n"
+                           "6) Shows vocabulary of 'Months of the year' in Maori\n"
+                           "\n"
+                           "0) Close the program.\n"
+                           "\n"
+                           "Choose the number between 1 to 6: ", 0, 6)
         print()
         quiz()
         print()
 
-    # if the player wants to finish, Finish the game
+        # if player selects 0, go to main routine and quit.
+        if select == 0:
+            break
+
+    # if the player types any key, the while loop ends.
     else:
-        print("Thank you for play our quiz!")
         break
 
-    again = input("Do you want to play again? Press [Enter] to play again, type any key to quit.")
+    # ask the player whether they want to play again or not.
+    again = input("Do you want to go back to the menu? Press [Enter] to go menu, type any key to quit.")
 
-# test code that prints 'what' when while loop is ended.
-print("END")
-
-
+# end of main routine
+print("Thank you for playing our Maori quiz!")

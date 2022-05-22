@@ -4,6 +4,7 @@ Slightly improved version of 04_MQ_selection_v1.
 The program asks again if the user types wrong number.
 """
 
+# shows what choices are available
 print()
 print("1) [Quiz] Number 1 to 10 in Maori\n"
       "2) [Quiz] Days of the week in Maori\n"
@@ -19,9 +20,11 @@ print("1) [Quiz] Number 1 to 10 in Maori\n"
 
 print()
 
+# asks the player what they want to play
 select = int(input("Choose the number between 1 to 6: "))
 print()
 
+# respond for each choices
 if 0 <= select <= 6:
     if select == 0:
         print("Thank you for playing the Quiz!")
@@ -50,6 +53,7 @@ if 0 <= select <= 6:
         print()
         print("Show vocab list")
 
+# if the player types other int from 0 to 6, program asks again.
 else:
     print("Invalid input. Please try again.")
     print()
@@ -61,6 +65,8 @@ else:
           "                                   \n"
           "4) [Vocabulary] Number 1 to 10 in Maori\n"
           "5) [Vocabulary] Days of the week in Maori\n"
-          "6) [Vocabulary] Months of the year in Maori")
+          "6) [Vocabulary] Months of the year in Maori\n"
+          "\n"
+          "0) Quit")
 
     select = int(input("Choose the number between 1 to 6: "))

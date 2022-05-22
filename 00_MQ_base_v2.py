@@ -42,8 +42,10 @@ def instruction():
 # selection function
 def selection(question, low, high):
     # error message that shows when the player types invalid answer.
-    error = "Invalid input.\n" \
-            "Please enter a number between 0 to 6."
+    error = "\n" \
+            "Invalid input.\n" \
+            "Please enter a number between 0 to 6.\n" \
+            "\n"
 
     # this while loop makes the code keep running even the player types invalid answer.
     while True:
@@ -98,11 +100,7 @@ def quiz():
         # shuffles the order of the list
         random.shuffle(choice)
 
-        print("**************************************************")
-        print("***********get right as much as you can!**********")
-        print("**************************************************")
-        print("\n"
-              "\n")
+        print(formatter("*", "Get correct as many as you can!"))
 
         # playing quiz
         for i in choice:
@@ -116,9 +114,7 @@ def quiz():
                 print("wrong.")
                 wrong += 1
         # shows summary of finished quiz
-        print("*********************************")
-        print(f"Correct: {correct},Wrong: {wrong}, quiz ended!")
-        print("*********************************")
+        print(formatter("*", f"Correct: {correct},Wrong: {wrong}, quiz ended!"))
 
     # if player types a number between 4 and 6, shows vocabulary lists.
     if 4 <= select <= 6:
@@ -129,6 +125,13 @@ def quiz():
             print(days)
         else:
             print(months)
+
+
+def formatter(symbol, text):
+    sides = symbol * 3
+    formatted_text = f"{sides} {text} {sides}"
+    top_bottom = symbol * len(formatted_text)
+    return f"{top_bottom}\n{formatted_text}\n{top_bottom}"
 
 
 # Main routine
@@ -152,7 +155,7 @@ else:
 
 # this while loop makes the code run over and over again until player says they do not want to play the game.
 while play == "Yes":
-
+    # if the player did not type anything when the program asked to play again.
     if again == "":
         select = selection("1) [Quiz] Number 1 to 10 in Maori\n"
                            "2) [Quiz] Days of the week in Maori\n"
@@ -170,14 +173,16 @@ while play == "Yes":
         quiz()
         print()
 
-    # if the player wants to finish, Finish the game
+        # if player selects 0, go to main routine and quit.
+        if select == 0:
+            break
+
+    # if the player types any key, the while loop ends.
     else:
-        print("Thank you for play our quiz!")
         break
 
+    # ask the player whether they want to play again or not.
     again = input("Do you want to play again? Press [Enter] to play again, type any key to quit.")
 
-# test code that prints 'what' when while loop is ended.
-print("END")
-
-
+# end of main routine
+print("Thank you for playing our Maori quiz!")

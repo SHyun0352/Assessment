@@ -27,9 +27,8 @@ def corrector(question_text):
 def instruction():
     print("***How to play***")
     print()
-    print("There are two types of quiz.\n"
-          "First choice is choosing number between 1 to 4 in the list\n"
-          "Second choice is type the answer to the question.\n")
+    print("Maori Spelling Quiz\n"
+          "")
     print()
     print("Choose the type of quiz you want to play, and play!")
     print()
